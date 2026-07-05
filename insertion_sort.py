@@ -6,12 +6,17 @@ Based on the algorithm in Chapter 2 of Introduction to Algorithms
 
 
 def insertion_sort(arr):
-    """Sort the list in place using insertion sort (increasing order)."""
+    """Sort the list in place using insertion sort, in monotonically
+    decreasing order.
+
+    The comparison arr[j] < key (instead of arr[j] > key in CLRS)
+    places larger elements first.
+    """
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
-        # Shift elements greater than key one position to the right
-        while j >= 0 and arr[j] > key:
+        # Shift elements smaller than key one position to the right
+        while j >= 0 and arr[j] < key:
             arr[j + 1] = arr[j]
             j = j - 1
         arr[j + 1] = key
