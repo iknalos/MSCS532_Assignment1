@@ -23,8 +23,30 @@ def insertion_sort(arr):
     return arr
 
 
+def run_tests():
+    """Verify the sort on typical and edge-case inputs."""
+    test_cases = [
+        [5, 2, 4, 6, 1, 3],          # example from CLRS Chapter 2
+        [],                          # empty array
+        [42],                        # single element
+        [3, 3, 1, 3, 2],             # duplicate values
+        [9, 8, 7, 6, 5],             # already in decreasing order
+        [1, 2, 3, 4, 5],             # reverse (increasing) order
+        [-4, 0, 7, -2, 5],           # negative numbers
+    ]
+    for case in test_cases:
+        expected = sorted(case, reverse=True)
+        result = insertion_sort(list(case))
+        status = "PASS" if result == expected else "FAIL"
+        print(f"{status}: {case} -> {result}")
+        assert result == expected, f"Expected {expected}, got {result}"
+    print("All tests passed.")
+
+
 if __name__ == "__main__":
     data = [5, 2, 4, 6, 1, 3]
     print("Original array:", data)
     insertion_sort(data)
     print("Sorted array:  ", data)
+    print()
+    run_tests()
